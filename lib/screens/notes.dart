@@ -13,10 +13,14 @@ class _NotesState extends State<Notes> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('To-do'),
-        automaticallyImplyLeading: false,
+        title: Text(
+          'To-do',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        // automaticallyImplyLeading: false,
         backgroundColor: pimaryBrown,
-         shape: const RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(30.0),
               bottomRight: Radius.circular(30.0)),
@@ -27,7 +31,11 @@ class _NotesState extends State<Notes> {
         child: Container(
           child: Column(
             children: [
-              IconButton(onPressed: (){}, icon: Icon(Icons.delete),padding: EdgeInsets.only(left: 200),)
+              IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.delete),
+                padding: EdgeInsets.only(left: 200),
+              )
             ],
           ),
           height: 100,

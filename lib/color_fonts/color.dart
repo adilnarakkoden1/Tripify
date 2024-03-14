@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 const Color pimaryBrown = Color.fromARGB(255, 67, 58, 58);
+const TextStyle robotoM = TextStyle(fontSize: 15);
 
 
 // class MyAppColors {

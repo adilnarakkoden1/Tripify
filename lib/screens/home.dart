@@ -121,6 +121,10 @@ class _HomeState extends State<Home> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   CircleAvatar(
+                                    backgroundColor:
+                                        value[index].category == 'Business'
+                                            ? Colors.orange
+                                            : Colors.green,
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
@@ -152,23 +156,38 @@ class _HomeState extends State<Home> {
                                         Text(DateFormat(' hh:mm a')
                                             .format(value[index].time)),
 
-
-                                            //=============== < dd MMM yyyy hh:mm a >==============
+                                        //=============== < dd MMM yyyy hh:mm a >==============
                                       ],
                                     ),
                                   ),
-                                  IconButton(
-                                      onPressed: null,
-                                      icon: Icon(
-                                        Icons.delete,
-                                        color: Colors.red,
-                                      )),
-                                  IconButton(
-                                      onPressed: () {},
-                                      icon: const Icon(
-                                        Icons.favorite_border_outlined,
-                                        color: Colors.black,
-                                      )),
+                                  Column(
+                                    children: [
+                                      
+                                      InkWell(
+                                        splashColor: Colors.red,
+                                        onTap: () {},
+                                        child: const Icon(
+                                          Icons.favorite_border_outlined,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      IconButton(
+                                          padding: EdgeInsets.all(0),
+                                          onPressed: () {
+                                            deleteTrips(value[index]);
+                                          },
+                                          icon: Container(
+                                            padding: EdgeInsets.all(0),
+                                            child: Icon(
+                                              Icons.delete,
+                                              color: Colors.red,
+                                            ),
+                                          )),
+                                    
+
+                                    
+                                    ],
+                                  )
                                 ],
                               ),
                             ),

@@ -31,7 +31,7 @@ class _HomeHolidayState extends State<HomeHoliday> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        // automaticallyImplyLeading: false,
         centerTitle: true,
         backgroundColor: pimaryBrown,
         title: const Text(
@@ -194,11 +194,20 @@ class _HomeHolidayState extends State<HomeHoliday> {
                     keyboardType: TextInputType.datetime,
                     controller: _timeController,
                     labelText: 'Time',
+                    validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please provide time';
+                    }
+                    return null;
+                  },
                     suffixIcon: IconButton(
                         onPressed: () {
+                          
                           _selectedTime();
                         },
-                        icon: const Icon(Icons.alarm_add))),
+                        icon: const Icon(Icons.alarm_add))
+                        
+                        ),
                 const SizedBox(height: 20),
 
                 ElevatedButton(
@@ -206,7 +215,7 @@ class _HomeHolidayState extends State<HomeHoliday> {
                     if (_formKey.currentState!.validate()) {
                       await addTrip(
                         HomeModel(
-                            id: 'jjjj',
+                            
                             source: _sourceController.text.trim(),
                             destination: _destinatonController.text.trim(),
                             type: _typeController.text.trim(),
@@ -217,7 +226,7 @@ class _HomeHolidayState extends State<HomeHoliday> {
                             category: selected == 0 ? 'Business' : 'Holiday',
                             favourite: false),
                       );
-                      message(context: context, message: 'value updated');
+                      successMessage(context: context, successMessage: 'Trip Planned');
                       Navigator.of(context).pop();
                     }
                   },

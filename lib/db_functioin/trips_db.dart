@@ -36,6 +36,12 @@ Future<void> updateTrips() async {
   tripslists.notifyListeners();
 }
 
-Future<void> editTrips(int id) async {
+Future<void> editTrips(int id) async {}
 
+
+
+//-----------------------delete--------------------------------
+Future<void> deleteTrips(HomeModel data) async {
+  final userBox = await Hive.openBox<HomeModel>('tripsdb');
+  await userBox.delete(data.id);
 }

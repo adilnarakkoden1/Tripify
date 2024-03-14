@@ -1,5 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:tripify/color_fonts/color.dart';
 
 class ViewTrips extends StatelessWidget {
   final tripdetails;
@@ -9,7 +11,7 @@ class ViewTrips extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: false,
+          // automaticallyImplyLeading: false,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(30.0),
@@ -81,17 +83,51 @@ class ViewTrips extends StatelessWidget {
                                 const SizedBox(
                                   height: 40,
                                 ),
-                                Text('Source :  ${tripdetails.source}',
-                                    style: TextStyle(fontSize: 18)),
-                                Text('Date :  ${tripdetails.time}',
-                                    style: TextStyle(fontSize: 18)),
-                                Text(
-                                    'Destination :  ${tripdetails.destination}',
-                                    style: TextStyle(fontSize: 18)),
-                                Text('Passengers :  ${tripdetails.passenger}',
-                                    style: TextStyle(fontSize: 18)),
-                                Text('Mode of transport :  ${tripdetails.type}',
-                                    style: TextStyle(fontSize: 18)),
+                                ListTile(
+                                  title: Text('Source'),
+                                  trailing: Text(tripdetails.source,style: robotoM),
+                                ),
+                                ListTile(
+                                  title: Text('Destination'),
+                                  trailing: Text(tripdetails.destination,style: robotoM),
+                                ),
+                                ListTile(
+                                  title: Text('Start Date'),
+                                  trailing: Text(DateFormat('dd MMM yyyy')
+                                      .format(tripdetails.startdate),style: robotoM),
+                                ),
+                                ListTile(
+                                  title: Text('End Date'),
+                                  trailing: Text(DateFormat('dd MMM yyyy')
+                                      .format(tripdetails.enddate),style: robotoM),
+                                ),
+                                ListTile(
+                                  title: Text('Passengers'),
+                                  trailing: Text(tripdetails.passenger,style: robotoM),
+                                ),
+                                ListTile(
+                                  title: Text('Transport Mode'),
+                                  trailing: Text(tripdetails.type,style: robotoM),
+                                ),
+                                ListTile(
+                                  title: Text('Time'),
+                                  trailing: Text(DateFormat(' hh:mm a')
+                                      .format(tripdetails.time,),style: robotoM),
+                                ),
+
+                                // Text('Source :  ${tripdetails.source}',
+                                //     style: TextStyle(fontSize: 18)),
+                                // Text('Date :  ${tripdetails.time}',
+                                //     style: TextStyle(fontSize: 18)),
+                                // Text(
+                                //     'Destination :  ${tripdetails.destination}',
+                                //     style: TextStyle(fontSize: 18)),
+                                // Text('Passengers :  ${tripdetails.passenger}',
+                                //     style: TextStyle(fontSize: 18)),
+                                // Text('Mode of transport :  ${tripdetails.type}',
+                                //     style: TextStyle(fontSize: 18)),
+                                // Text('End Date :  ${tripdetails.enddate}',
+                                //     style: TextStyle(fontSize: 18)),
                               ],
                             ),
                           ),
@@ -99,6 +135,7 @@ class ViewTrips extends StatelessWidget {
                       ),
                       Center(
                         child: CircleAvatar(
+                          backgroundColor: tripdetails.category=='Business'?Colors.orange:Colors.green,
                             radius: 40,
                             child: Column(
                               children: [
