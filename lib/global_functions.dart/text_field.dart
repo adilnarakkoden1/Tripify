@@ -4,7 +4,7 @@ class Input extends StatelessWidget {
   TextEditingController controller;
   String labelText;
   Widget? suffixIcon;
-TextInputType? keyboardType;
+  TextInputType? keyboardType;
   String? Function(String?)? validator;
   Input(
       {super.key,

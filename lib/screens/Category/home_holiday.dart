@@ -187,6 +187,7 @@ class _HomeHolidayState extends State<HomeHoliday> {
                     }
                     return null;
                   },
+            
                 ),
                 const SizedBox(height: 15),
                 //===============================================================
@@ -195,19 +196,16 @@ class _HomeHolidayState extends State<HomeHoliday> {
                     controller: _timeController,
                     labelText: 'Time',
                     validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please provide time';
-                    }
-                    return null;
-                  },
+                      if (value!.isEmpty) {
+                        return 'Please provide time';
+                      }
+                      return null;
+                    },
                     suffixIcon: IconButton(
                         onPressed: () {
-                          
                           _selectedTime();
                         },
-                        icon: const Icon(Icons.alarm_add))
-                        
-                        ),
+                        icon: const Icon(Icons.alarm_add))),
                 const SizedBox(height: 20),
 
                 ElevatedButton(
@@ -215,7 +213,6 @@ class _HomeHolidayState extends State<HomeHoliday> {
                     if (_formKey.currentState!.validate()) {
                       await addTrip(
                         HomeModel(
-                            
                             source: _sourceController.text.trim(),
                             destination: _destinatonController.text.trim(),
                             type: _typeController.text.trim(),
@@ -226,7 +223,8 @@ class _HomeHolidayState extends State<HomeHoliday> {
                             category: selected == 0 ? 'Business' : 'Holiday',
                             favourite: false),
                       );
-                      successMessage(context: context, successMessage: 'Trip Planned');
+                      successMessage(
+                          context: context, successMessage: 'Trip Planned');
                       Navigator.of(context).pop();
                     }
                   },

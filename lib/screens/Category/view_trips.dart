@@ -1,11 +1,14 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tripify/color_fonts/color.dart';
+import 'package:tripify/models/home_model.dart';
 
 class ViewTrips extends StatelessWidget {
-  final tripdetails;
-  const ViewTrips({super.key, this.tripdetails});
+  HomeModel tripdetails;
+ViewTrips({super.key,required this.tripdetails});
 
   @override
   Widget build(BuildContext context) {
@@ -72,9 +75,9 @@ class ViewTrips extends StatelessWidget {
                     children: [
                       Container(
                         color: const Color.fromARGB(0, 223, 214, 214),
-                        padding: EdgeInsets.all(30),
+                        padding: const EdgeInsets.all(30),
                         child: Card(
-                          color: Color.fromARGB(255, 158, 150, 150),
+                          color: const Color.fromARGB(255, 158, 150, 150),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
@@ -84,33 +87,33 @@ class ViewTrips extends StatelessWidget {
                                   height: 40,
                                 ),
                                 ListTile(
-                                  title: Text('Source'),
+                                  title: const Text('Source'),
                                   trailing: Text(tripdetails.source,style: robotoM),
                                 ),
                                 ListTile(
-                                  title: Text('Destination'),
+                                  title: const Text('Destination'),
                                   trailing: Text(tripdetails.destination,style: robotoM),
                                 ),
                                 ListTile(
-                                  title: Text('Start Date'),
+                                  title: const Text('Start Date'),
                                   trailing: Text(DateFormat('dd MMM yyyy')
                                       .format(tripdetails.startdate),style: robotoM),
                                 ),
                                 ListTile(
-                                  title: Text('End Date'),
+                                  title: const Text('End Date'),
                                   trailing: Text(DateFormat('dd MMM yyyy')
                                       .format(tripdetails.enddate),style: robotoM),
                                 ),
                                 ListTile(
-                                  title: Text('Passengers'),
+                                  title: const Text('Passengers'),
                                   trailing: Text(tripdetails.passenger,style: robotoM),
                                 ),
                                 ListTile(
-                                  title: Text('Transport Mode'),
+                                  title: const Text('Transport Mode'),
                                   trailing: Text(tripdetails.type,style: robotoM),
                                 ),
                                 ListTile(
-                                  title: Text('Time'),
+                                  title: const Text('Time'),
                                   trailing: Text(DateFormat(' hh:mm a')
                                       .format(tripdetails.time,),style: robotoM),
                                 ),

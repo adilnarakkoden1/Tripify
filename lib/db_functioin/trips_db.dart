@@ -6,7 +6,8 @@ ValueNotifier<List<HomeModel>> tripslists = ValueNotifier([]);
 
 addTrip(HomeModel homeModel) async {
   final userBox = await Hive.openBox<HomeModel>('tripsdb');
-  await userBox.add(homeModel);
+  homeModel.id = await userBox.add(homeModel);
+  userBox.put(homeModel.id, homeModel);
   tripslists.value.add(homeModel);
   tripslists.notifyListeners();
   print('added succesflly');
@@ -30,18 +31,28 @@ addTrip(HomeModel homeModel) async {
 //   }
 // }
 Future<void> updateTrips() async {
-  final userBox = await Hive.openBox<HomeModel>('tripsdb');
-  tripslists.value.clear();
-  tripslists.value.addAll(userBox.values);
+  try {
+    final userBox = await Hive.openBox<HomeModel>('tripsdb');
+    tripslists.value.clear();
+    tripslists.value.addAll(userBox.values);
+  } catch (e) {
+    print(e);
+  }
+
   tripslists.notifyListeners();
 }
 
-Future<void> editTrips(int id) async {}
-
-
+Future<void> editTrips(HomeModel value) async {
+  final userBox = await Hive.openBox<HomeModel>('tripsdb');
+  userBox.put(value.id, value);
+  updateTrips();
+}
 
 //-----------------------delete--------------------------------
-Future<void> deleteTrips(HomeModel data) async {
+Future<void> deleteTrips(int id) async {
   final userBox = await Hive.openBox<HomeModel>('tripsdb');
-  await userBox.delete(data.id);
+  print(id);
+  userBox.delete(id);
+  print(userBox.values.length);
+  updateTrips();
 }

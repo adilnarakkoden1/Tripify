@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:tripify/db_functioin/trips_db.dart';
 import 'package:tripify/global_functions.dart/functions.dart';
 import 'package:tripify/screens/Category/home_holiday.dart';
 import 'package:tripify/screens/Category/view_trips.dart';
+import 'package:tripify/screens/bottombar.dart';
 import 'package:tripify/screens/notes.dart';
 import 'package:intl/intl.dart';
 
@@ -113,82 +115,113 @@ class _HomeState extends State<Home> {
                                   ViewTrips(tripdetails: value[index]),
                             ));
                           },
-                          child: Card(
-                            elevation: 3,
-                            child: Container(
-                              padding: EdgeInsets.all(8),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  CircleAvatar(
-                                    backgroundColor:
-                                        value[index].category == 'Business'
-                                            ? Colors.orange
-                                            : Colors.green,
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Text(value[index]
-                                            .startdate
-                                            .day
-                                            .toString()),
-                                        Text(value[index]
-                                            .startdate
-                                            .month
-                                            .toString()),
-                                        Text(value[index]
-                                            .startdate
-                                            .year
-                                            .toString()),
-                                      ],
-                                    ),
-                                    radius: 40,
-                                  ),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Title(
-                                            color: Colors.black,
-                                            child: Text(value[index].source)),
-                                        Text(DateFormat(' hh:mm a')
-                                            .format(value[index].time)),
+                          child: Slidable(
+                            startActionPane:
+                                ActionPane(motion: ScrollMotion(), children: [
+                              SlidableAction(
+                                onPressed: (context) =>
+                                    _showMyDialog(value, index),
+                                // deleteTrips(value[index].id!),
+                                backgroundColor: Color(0xFFFE4A49),
+                                foregroundColor: Colors.white,
+                                icon: Icons.delete,
+                                label: 'Delete',
+                              ),
+                            ]),
+                            endActionPane:
+                                ActionPane(motion: ScrollMotion(), children: [
+                              SlidableAction(
+                                onPressed: (context) => null,
+                                // deleteTrips(value[index].id!),
+                                backgroundColor:
+                                    Color.fromARGB(255, 8, 170, 219),
+                                foregroundColor: Colors.white,
+                                icon: Icons.delete,
+                                label: 'Edit',
+                              ),
+                            ]),
+                            child: Card(
+                              elevation: 3,
+                              child: Container(
+                                padding: const EdgeInsets.all(8),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    CircleAvatar(
+                                      backgroundColor:
+                                          value[index].category == 'Business'
+                                              ? Colors.orange
+                                              : Colors.green,
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text(DateFormat('dd')
+                                              .format(value[index].startdate)),
+                                          Text(DateFormat('MMM')
+                                              .format(value[index].startdate)),
+                                          Text(DateFormat('yyyy')
+                                              .format(value[index].startdate)),
 
-                                        //=============== < dd MMM yyyy hh:mm a >==============
-                                      ],
-                                    ),
-                                  ),
-                                  Column(
-                                    children: [
-                                      
-                                      InkWell(
-                                        splashColor: Colors.red,
-                                        onTap: () {},
-                                        child: const Icon(
-                                          Icons.favorite_border_outlined,
-                                          color: Colors.black,
-                                        ),
+                                          //  Text(DateFormat(' hh:mm a')
+                                          // .format(tripdetails.time,),style: robotoM),
+                                        ],
                                       ),
-                                      IconButton(
-                                          padding: EdgeInsets.all(0),
-                                          onPressed: () {
-                                            deleteTrips(value[index]);
-                                          },
-                                          icon: Container(
-                                            padding: EdgeInsets.all(0),
-                                            child: Icon(
-                                              Icons.delete,
-                                              color: Colors.red,
-                                            ),
-                                          )),
-                                    
+                                      radius: 40,
+                                    ),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Title(
+                                              color: Colors.black,
+                                              child: Text(
+                                                  value[index].destination)),
+                                          Text(DateFormat(' hh:mm a')
+                                              .format(value[index].time)),
 
-                                    
-                                    ],
-                                  )
-                                ],
+                                          //=============== < dd MMM yyyy hh:mm a >==============
+                                        ],
+                                      ),
+                                    ),
+                                    Column(
+                                      children: [
+                                        InkWell(
+                                          splashColor: Colors.red,
+                                          onTap: () {
+                                            value[index].favourite =
+                                                !value[index].favourite;
+                                            editTrips(value[index]);
+                                          },
+                                          child: value[index].favourite
+                                              ? const Icon(
+                                                  Icons.favorite,
+                                                  color: Colors.red,
+                                                )
+                                              : const Icon(
+                                                  Icons
+                                                      .favorite_border_outlined,
+                                                  color: Colors.black,
+                                                ),
+                                        ),
+                                        //---------------------------------------------------------delete=================================================
+                                        IconButton(
+                                            padding: const EdgeInsets.all(0),
+                                            onPressed: () {
+                                              _showMyDialog(value, index);
+                                            },
+                                            icon: Container(
+                                              padding: const EdgeInsets.all(0),
+                                              child: const Icon(
+                                                Icons.delete,
+                                                color: Colors.red,
+                                              ),
+                                            )),
+                                      ],
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -205,6 +238,36 @@ class _HomeState extends State<Home> {
           },
           child: const Icon(Icons.add)),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+    );
+  }
+
+//>>>>>>>>>>>>>>>>>>>>>>alert function>>>>>>>>>>>>>>>>
+
+  Future<void> _showMyDialog(value, index) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Do you want to delete this trip?'),
+          actions: [
+            TextButton(
+              child: const Text('Yes'),
+              onPressed: () {
+                deleteTrips(value[index].id!);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const Bottom()));
+              },
+            ),
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

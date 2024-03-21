@@ -4,7 +4,7 @@ part 'home_model.g.dart';
 @HiveType(typeId: 1)
 class HomeModel {
   @HiveField(0)
-  final int ? id;
+   int ? id;
   @HiveField(1)
   final String source;
   @HiveField(2)

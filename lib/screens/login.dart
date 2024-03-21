@@ -41,7 +41,7 @@ class _LoginState extends State<Login> {
                       // decoration: BoxDecoration(color: Colors.amber),
                     ),
                   ),
-                  SizedBox(height: 60),
+                  const SizedBox(height: 60),
 
                   //============================================usernmae==========================================
                   TextFormField(
@@ -58,7 +58,7 @@ class _LoginState extends State<Login> {
                           border: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(30.0))))),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
 
@@ -81,7 +81,7 @@ class _LoginState extends State<Login> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(30.0)))),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   ElevatedButton(
@@ -91,19 +91,19 @@ class _LoginState extends State<Login> {
                         }
                       },
                       child: Text('LOGIN')),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Row(
                     children: [
-                      Text('Create a new Account?'),
+                      const Text('Create a new Account?'),
                       TextButton(
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => Register()));
                           },
-                          child: Text('Sign-Up'))
-                    ],
+                          child: const Text('Sign-Up'))
+                    ], 
                   )
                 ],
               ),
