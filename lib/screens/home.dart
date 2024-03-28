@@ -3,10 +3,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:tripify/db_functioin/trips_db.dart';
 import 'package:tripify/global_functions.dart/functions.dart';
-import 'package:tripify/screens/Category/home_holiday.dart';
+import 'package:tripify/screens/Category/add_holiday.dart';
+import 'package:tripify/screens/Category/edit_trips.dart';
 import 'package:tripify/screens/Category/view_trips.dart';
 import 'package:tripify/screens/bottombar.dart';
-import 'package:tripify/screens/notes.dart';
+import 'package:tripify/screens/Todo/view_todo.dart';
 import 'package:intl/intl.dart';
 
 class Home extends StatefulWidget {
@@ -122,24 +123,30 @@ class _HomeState extends State<Home> {
                                 onPressed: (context) =>
                                     _showMyDialog(value, index),
                                 // deleteTrips(value[index].id!),
-                                backgroundColor: Color(0xFFFE4A49),
+                                backgroundColor: const Color(0xFFFE4A49),
                                 foregroundColor: Colors.white,
                                 icon: Icons.delete,
                                 label: 'Delete',
                               ),
                             ]),
-                            endActionPane:
-                                ActionPane(motion: ScrollMotion(), children: [
-                              SlidableAction(
-                                onPressed: (context) => null,
-                                // deleteTrips(value[index].id!),
-                                backgroundColor:
-                                    Color.fromARGB(255, 8, 170, 219),
-                                foregroundColor: Colors.white,
-                                icon: Icons.delete,
-                                label: 'Edit',
-                              ),
-                            ]),
+                            endActionPane: ActionPane(
+                                motion: const ScrollMotion(),
+                                children: [
+                                  SlidableAction(
+                                    onPressed: (context) => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              EditHoliday(triped: value[index]),
+                                        )),
+                                    // deleteTrips(value[index].id!),
+                                    backgroundColor:
+                                        const Color.fromARGB(255, 8, 170, 219),
+                                    foregroundColor: Colors.white,
+                                    icon: Icons.edit,
+                                    label: 'Edit',
+                                  ),
+                                ]),
                             child: Card(
                               elevation: 3,
                               child: Container(
@@ -206,18 +213,20 @@ class _HomeState extends State<Home> {
                                                 ),
                                         ),
                                         //---------------------------------------------------------delete=================================================
-                                        IconButton(
-                                            padding: const EdgeInsets.all(0),
-                                            onPressed: () {
-                                              _showMyDialog(value, index);
-                                            },
-                                            icon: Container(
-                                              padding: const EdgeInsets.all(0),
-                                              child: const Icon(
-                                                Icons.delete,
-                                                color: Colors.red,
-                                              ),
-                                            )),
+                                        // IconButton(
+                                        //     padding: const EdgeInsets.all(0),
+                                        //     onPressed: () {
+                                        //       _showMyDialog(value, index);
+                                        //     },
+                                        //     icon: Container(
+                                        //       padding: const EdgeInsets.all(0),
+                                        //       child: const Icon(
+                                        //         Icons.delete,
+                                        //         color: Colors.red,
+                                        //       ),
+                                        //     )
+
+                                        //   ),
                                       ],
                                     )
                                   ],

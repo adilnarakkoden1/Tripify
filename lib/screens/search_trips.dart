@@ -4,6 +4,7 @@ import 'package:tripify/color_fonts/color.dart';
 import 'package:tripify/db_functioin/trips_db.dart';
 import 'package:tripify/models/home_model.dart';
 import 'package:tripify/screens/Category/view_trips.dart';
+import 'package:tripify/screens/bottombar.dart';
 
 class SearchTrips extends StatefulWidget {
   const SearchTrips({super.key});
@@ -50,7 +51,7 @@ class _SearchTripsState extends State<SearchTrips> {
       case 'dateAscending':
         finduser.sort((a, b) => a.startdate.compareTo(b.startdate));
         break;
-      case 'dateDescending':
+      case 'dateDes cending':
         finduser.sort((a, b) => b.startdate.compareTo(a.startdate));
         break;
       default:
@@ -206,26 +207,11 @@ class _SearchTripsState extends State<SearchTrips> {
                           ),
                           Column(
                             children: [
-                              // IconButton(
-                              //   icon: Icon(
-                              //     finduser[index].favourite
-                              //         ? Icons.favorite
-                              //         : Icons.favorite_border_outlined,
-                              //     color: finduser[index].favourite
-                              //         ? Colors.red
-                              //         : Colors.black,
-                              //   ),
-                              //   onPressed: () {
-                              //     setState(() {
-                              //       finduser[index].favourite =
-                              //           !finduser[index].favourite;
-                              //     });
-                              //   },
-                              // ),
+                              
                               IconButton(
                                 icon: Icon(Icons.delete, color: Colors.red),
                                 onPressed: () {
-                                  // Implement delete functionality here
+                                  _showMyDialog(value, index);
                                 },
                               ),
                             ],
@@ -242,4 +228,51 @@ class _SearchTripsState extends State<SearchTrips> {
       ]),
     );
   }
+
+Future<void> _showMyDialog(value, index) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Do you want to delete this trip?'),
+          actions: [
+            TextButton(
+              child: const Text('Yes'),
+              onPressed: () {
+                deleteTrips(value[index].id!);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const Bottom()));
+              },
+            ),
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

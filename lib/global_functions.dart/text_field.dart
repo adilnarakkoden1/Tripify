@@ -21,6 +21,8 @@ class Input extends StatelessWidget {
       keyboardType: keyboardType,
       controller: controller,
       decoration: InputDecoration(
+        isDense: true,
+        contentPadding: EdgeInsets.all(8),
         labelText: labelText,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(25),

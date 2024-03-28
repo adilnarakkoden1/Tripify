@@ -13,23 +13,6 @@ addTrip(HomeModel homeModel) async {
   print('added succesflly');
 }
 
-// Future<void> addTrip(HomeModel homeModel) async {
-//   try {
-//     final userBox = await Hive.openBox<HomeModel>('tripsdb');
-//     await userBox.add(homeModel);
-//     userBox.close(); // Close the box after use to release resources
-
-//     if (!tripslists.value.contains(homeModel)) {
-//       tripslists.value.add(homeModel);
-//       tripslists.notifyListeners();
-//       print('Added successfully');
-//     } else {
-//       print('Trip already exists');
-//     }
-//   } catch (e) {
-//     print('Error adding trip: $e');
-//   }
-// }
 Future<void> updateTrips() async {
   try {
     final userBox = await Hive.openBox<HomeModel>('tripsdb');
@@ -43,9 +26,11 @@ Future<void> updateTrips() async {
 }
 
 Future<void> editTrips(HomeModel value) async {
+  print('reached edit');
   final userBox = await Hive.openBox<HomeModel>('tripsdb');
-  userBox.put(value.id, value);
+  await userBox.put(value.id, value);
   updateTrips();
+  
 }
 
 //-----------------------delete--------------------------------

@@ -13,7 +13,13 @@ class Bottom extends StatefulWidget {
   State<Bottom> createState() => _BottomState();
 }
 
-List<Widget?> _body = const [Profile(),Favourites(),Home(),SearchTrips(),Memories()];
+List<Widget?> _body = const [
+  Profile(),
+  Favourites(),
+  Home(),
+  SearchTrips(),
+  Memories()
+];
 int _currentIndex = 2;
 
 class _BottomState extends State<Bottom> {
@@ -22,7 +28,7 @@ class _BottomState extends State<Bottom> {
     return Scaffold(
       body: _body[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-         landscapeLayout: BottomNavigationBarLandscapeLayout.centered,
+        landscapeLayout: BottomNavigationBarLandscapeLayout.centered,
         backgroundColor: Colors.amberAccent,
         currentIndex: _currentIndex,
         onTap: (int index) {
@@ -39,7 +45,6 @@ class _BottomState extends State<Bottom> {
           BottomNavigationBarItem(
             backgroundColor: pimaryBrown,
             icon: Icon(Icons.favorite_outline),
-           
             label: 'Favourites',
           ),
           BottomNavigationBarItem(
@@ -52,8 +57,7 @@ class _BottomState extends State<Bottom> {
             icon: Icon(Icons.travel_explore),
             label: 'Trips',
           ),
-           BottomNavigationBarItem(
-
+          BottomNavigationBarItem(
             backgroundColor: pimaryBrown,
             icon: Icon(Icons.camera_alt_rounded),
             label: 'Memories',

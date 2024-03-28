@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:tripify/color_fonts/color.dart';
 import 'package:tripify/models/home_model.dart';
+import 'package:tripify/models/memories_model.dart';
 import 'package:tripify/models/user_model.dart';
 import 'package:tripify/screens/splash.dart';
 
@@ -9,6 +10,7 @@ Future<void> main() async {
   await Hive.initFlutter();
   if (!Hive.isAdapterRegistered(UserModelAdapter().typeId)) {
     Hive.registerAdapter(UserModelAdapter());
+    Hive.registerAdapter(MemoryModelAdapter());
   }
     Hive.registerAdapter(HomeModelAdapter());
   runApp(const MyApp());
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: Splash1(),
+      home: const Splash1(),
     );
   }
 }

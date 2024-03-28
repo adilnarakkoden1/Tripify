@@ -8,7 +8,7 @@ import 'package:tripify/models/home_model.dart';
 
 class ViewTrips extends StatelessWidget {
   HomeModel tripdetails;
-ViewTrips({super.key,required this.tripdetails});
+  ViewTrips({super.key, required this.tripdetails});
 
   @override
   Widget build(BuildContext context) {
@@ -88,49 +88,46 @@ ViewTrips({super.key,required this.tripdetails});
                                 ),
                                 ListTile(
                                   title: const Text('Source'),
-                                  trailing: Text(tripdetails.source,style: robotoM),
+                                  trailing:
+                                      Text(tripdetails.source, style: robotoM),
                                 ),
                                 ListTile(
                                   title: const Text('Destination'),
-                                  trailing: Text(tripdetails.destination,style: robotoM),
+                                  trailing: Text(tripdetails.destination,
+                                      style: robotoM),
                                 ),
                                 ListTile(
                                   title: const Text('Start Date'),
-                                  trailing: Text(DateFormat('dd MMM yyyy')
-                                      .format(tripdetails.startdate),style: robotoM),
+                                  trailing: Text(
+                                      DateFormat('dd MMM yyyy')
+                                          .format(tripdetails.startdate),
+                                      style: robotoM),
                                 ),
                                 ListTile(
                                   title: const Text('End Date'),
-                                  trailing: Text(DateFormat('dd MMM yyyy')
-                                      .format(tripdetails.enddate),style: robotoM),
+                                  trailing: Text(
+                                      DateFormat('dd MMM yyyy')
+                                          .format(tripdetails.enddate),
+                                      style: robotoM),
                                 ),
                                 ListTile(
                                   title: const Text('Passengers'),
-                                  trailing: Text(tripdetails.passenger,style: robotoM),
+                                  trailing: Text(tripdetails.passenger,
+                                      style: robotoM),
                                 ),
                                 ListTile(
                                   title: const Text('Transport Mode'),
-                                  trailing: Text(tripdetails.type,style: robotoM),
+                                  trailing:
+                                      Text(tripdetails.type, style: robotoM),
                                 ),
                                 ListTile(
                                   title: const Text('Time'),
-                                  trailing: Text(DateFormat(' hh:mm a')
-                                      .format(tripdetails.time,),style: robotoM),
+                                  trailing: Text(
+                                      DateFormat(' hh:mm a').format(
+                                        tripdetails.time,
+                                      ),
+                                      style: robotoM),
                                 ),
-
-                                // Text('Source :  ${tripdetails.source}',
-                                //     style: TextStyle(fontSize: 18)),
-                                // Text('Date :  ${tripdetails.time}',
-                                //     style: TextStyle(fontSize: 18)),
-                                // Text(
-                                //     'Destination :  ${tripdetails.destination}',
-                                //     style: TextStyle(fontSize: 18)),
-                                // Text('Passengers :  ${tripdetails.passenger}',
-                                //     style: TextStyle(fontSize: 18)),
-                                // Text('Mode of transport :  ${tripdetails.type}',
-                                //     style: TextStyle(fontSize: 18)),
-                                // Text('End Date :  ${tripdetails.enddate}',
-                                //     style: TextStyle(fontSize: 18)),
                               ],
                             ),
                           ),
@@ -138,15 +135,24 @@ ViewTrips({super.key,required this.tripdetails});
                       ),
                       Center(
                         child: CircleAvatar(
-                          backgroundColor: tripdetails.category=='Business'?Colors.orange:Colors.green,
+                            backgroundColor: tripdetails.category == 'Business'
+                                ? Colors.orange
+                                : Colors.green,
                             radius: 40,
                             child: Column(
                               children: [
-                                Text('${tripdetails.startdate.day.toString()}'),
                                 Text(
-                                    '${tripdetails.startdate.month.toString()}'),
+                                    DateFormat('dd')
+                                        .format(tripdetails.startdate),
+                                    style: robotoM),
                                 Text(
-                                    '${tripdetails.startdate.year.toString()}'),
+                                    DateFormat('MMM')
+                                        .format(tripdetails.startdate),
+                                    style: robotoM),
+                                Text(
+                                    DateFormat('yyyy')
+                                        .format(tripdetails.startdate),
+                                    style: robotoM),
                               ],
                             )),
                       ),
@@ -157,22 +163,3 @@ ViewTrips({super.key,required this.tripdetails});
             )));
   }
 }
-
-
-
-
-
-
-//'''''''''''''''''''''''''
-                          // Text('Destination :  ${tripdetails.time}',
-                      //     style: TextStyle(fontSize: 23)),
-                      // const SizedBox(
-                      //   height: 10,
-                      // ),
-                      // Text('Passengers :  ${tripdetails.father}',
-                      //     style: TextStyle(fontSize: 23)),
-                      // const SizedBox(
-                      //   height: 10,
-                      // ),
-                      // Text('Time :  ${tripdetails.pnumber}',
-                      //     style: TextStyle(fontSize: 23)),
