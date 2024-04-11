@@ -90,7 +90,7 @@ class _LoginState extends State<Login> {
                           checkLogin(context);
                         }
                       },
-                      child: Text('LOGIN')),
+                      child: const Text('LOGIN')),
                   const SizedBox(
                     height: 20,
                   ),
@@ -103,7 +103,7 @@ class _LoginState extends State<Login> {
                                 builder: (context) => Register()));
                           },
                           child: const Text('Sign-Up'))
-                    ], 
+                    ],
                   )
                 ],
               ),

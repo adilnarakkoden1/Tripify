@@ -3,7 +3,7 @@ import 'package:tripify/color_fonts/color.dart';
 import 'package:tripify/screens/favourite_trips.dart';
 import 'package:tripify/screens/home.dart';
 import 'package:tripify/screens/memories.dart';
-import 'package:tripify/screens/profile.dart';
+import 'package:tripify/screens/profile/profile.dart';
 import 'package:tripify/screens/search_trips.dart';
 
 class Bottom extends StatefulWidget {
@@ -13,12 +13,12 @@ class Bottom extends StatefulWidget {
   State<Bottom> createState() => _BottomState();
 }
 
-List<Widget?> _body = const [
+List<Widget?> _body = [
   Profile(),
   Favourites(),
   Home(),
   SearchTrips(),
-  Memories()
+  Memories(),
 ];
 int _currentIndex = 2;
 

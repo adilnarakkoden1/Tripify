@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:tripify/color_fonts/color.dart';
 import 'package:tripify/db_functioin/trips_db.dart';
 import 'package:tripify/global_functions.dart/scaffold_messenger.dart';
@@ -25,6 +26,17 @@ class _HomeHolidayState extends State<HomeHoliday> {
   final _passengerController = TextEditingController();
   final _timeController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  List<String> transportModes = [
+    'Car',
+    'Train',
+    'Plane',
+    'Ship',
+    'Bus',
+    'other'
+  ];
+  String? selectedTransportMode;
+
   int selected = 0;
   List<String> text = ['Business', ' Holiday '];
   @override
@@ -167,13 +179,39 @@ class _HomeHolidayState extends State<HomeHoliday> {
 
                 const SizedBox(height: 15),
                 //================================================================================
-                Input(
-                  controller: _typeController,
-                  labelText: 'Mode of transport',
-                  suffixIcon: const Icon(Icons.commute),
+                // Input(
+                //   controller: _typeController,
+                //   labelText: 'Mode of transport',
+                //   suffixIcon: const Icon(Icons.commute),
+                //   validator: (value) {
+                //     if (value!.isEmpty) {
+                //       return 'Please enter a mode of transport';
+                //     }
+                //     return null;
+                //   },
+                // ),
+
+                DropdownButtonFormField<String>(
+                  borderRadius: BorderRadius.circular(20),
+                  value: selectedTransportMode,
+                  onChanged: (newValue) {
+                    setState(() {
+                      selectedTransportMode = newValue;
+                    });
+                  },
+                  items: transportModes.map((mode) {
+                    return DropdownMenuItem<String>(
+                      value: mode,
+                      child: Text(mode),
+                    );
+                  }).toList(),
+                  decoration: const InputDecoration(
+                    labelText: 'Mode of transport',
+                    suffixIcon: Icon(Icons.commute),
+                  ),
                   validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please enter a mode of transport';
+                    if (value == null || value.isEmpty) {
+                      return 'Please select a mode of transport';
                     }
                     return null;
                   },
@@ -202,15 +240,16 @@ class _HomeHolidayState extends State<HomeHoliday> {
                     if (_formKey.currentState!.validate()) {
                       await addTrip(
                         HomeModel(
-                            source: _sourceController.text.trim(),
-                            destination: _destinatonController.text.trim(),
-                            type: _typeController.text.trim(),
-                            startdate: startDate!,
-                            enddate: endDate!,
-                            passenger: _passengerController.text.trim(),
-                            time: DateTime.now(),
-                            category: selected == 0 ? 'Business' : 'Holiday',
-                            favourite: false),
+                          source: _sourceController.text.trim(),
+                          destination: _destinatonController.text.trim(),
+                          type: selectedTransportMode!,
+                          startdate: startDate!,
+                          enddate: endDate!,
+                          passenger: _passengerController.text.trim(),
+                          time: DateTime.now(),
+                          category: selected == 0 ? 'Business' : 'Holiday',
+                          favourite: false,
+                        ),
                       );
                       successMessage(
                           context: context, successMessage: 'Trip Planned');

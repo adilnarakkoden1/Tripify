@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'memories_model.dart';
+part of 'memory_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
@@ -8,7 +8,7 @@ part of 'memories_model.dart';
 
 class MemoryModelAdapter extends TypeAdapter<MemoryModel> {
   @override
-  final int typeId = 2;
+  final int typeId = 5;
 
   @override
   MemoryModel read(BinaryReader reader) {
@@ -18,8 +18,8 @@ class MemoryModelAdapter extends TypeAdapter<MemoryModel> {
     };
     return MemoryModel(
       id: fields[0] as int?,
-      imagex: fields[1] as String,
-      details: fields[2] as String,
+      details: fields[1] as String,
+      imagePath: (fields[2] as List).cast<String>(),
     );
   }
 
@@ -30,9 +30,9 @@ class MemoryModelAdapter extends TypeAdapter<MemoryModel> {
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.imagex)
+      ..write(obj.details)
       ..writeByte(2)
-      ..write(obj.details);
+      ..write(obj.imagePath);
   }
 
   @override

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:tripify/color_fonts/color.dart';
 import 'package:tripify/db_functioin/trips_db.dart';
 import 'package:tripify/global_functions.dart/scaffold_messenger.dart';
@@ -28,15 +29,29 @@ class _HomeHolidayState extends State<EditHoliday> {
   final _formKey = GlobalKey<FormState>();
   int selected = 0;
   List<String> text = ['Business', ' Holiday '];
+  List<String> transportModes = [
+    'Car',
+    'Train',
+    'Plane',
+    'Ship',
+    'Bus',
+    'other'
+  ];
+  String? selectedTransportMode;
   @override
   void initState() {
     _sourceController.text = widget.triped.source;
     _destinatonController.text = widget.triped.destination;
-    _typeController.text = widget.triped.type;
+    selectedTransportMode = widget.triped.type;
     startDate = widget.triped.startdate;
     endDate = widget.triped.enddate;
+    _startDateController.text =
+        DateFormat('dd MMM yyyy').format(widget.triped.startdate);
+    _endDateController.text =
+        DateFormat('dd MMM yyyy').format(widget.triped.enddate);
     _passengerController.text = widget.triped.passenger;
-    _timeController.text = widget.triped.time.toString();
+    _timeController.text = DateFormat('hh : mm a').format(widget.triped.time);
+    widget.triped.time.toString();
     selected = widget.triped.category == 'Business' ? 0 : 1;
     super.initState();
   }
@@ -181,13 +196,38 @@ class _HomeHolidayState extends State<EditHoliday> {
 
                 const SizedBox(height: 15),
                 //================================================================================
-                Input(
-                  controller: _typeController,
-                  labelText: 'Mode of transport',
-                  suffixIcon: const Icon(Icons.commute),
+                // Input(
+                //   controller: _typeController,
+                //   labelText: 'Mode of transport',
+                //   suffixIcon: const Icon(Icons.commute),
+                //   validator: (value) {
+                //     if (value!.isEmpty) {
+                //       return 'Please enter a mode of transport';
+                //     }
+                //     return null;
+                //   },
+                // ),
+                DropdownButtonFormField<String>(
+                  borderRadius: BorderRadius.circular(20),
+                  value: selectedTransportMode,
+                  onChanged: (newValue) {
+                    setState(() {
+                      selectedTransportMode = newValue;
+                    });
+                  },
+                  items: transportModes.map((mode) {
+                    return DropdownMenuItem<String>(
+                      value: mode,
+                      child: Text(mode),
+                    );
+                  }).toList(),
+                  decoration: const InputDecoration(
+                    labelText: 'Mode of transport',
+                    suffixIcon: Icon(Icons.commute),
+                  ),
                   validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please enter a mode of transport';
+                    if (value == null || value.isEmpty) {
+                      return 'Please select a mode of transport';
                     }
                     return null;
                   },
@@ -215,16 +255,17 @@ class _HomeHolidayState extends State<EditHoliday> {
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       final data = HomeModel(
-                          id: widget.triped.id,
-                          source: _sourceController.text.trim(),
-                          destination: _destinatonController.text.trim(),
-                          type: _typeController.text.trim(),
-                          startdate: startDate,
-                          enddate: endDate!,
-                          passenger: _passengerController.text.trim(),
-                          time: DateTime.now(),
-                          category: selected == 0 ? 'Business' : 'Holiday',
-                          favourite: widget.triped.favourite);
+                        id: widget.triped.id,
+                        source: _sourceController.text.trim(),
+                        destination: _destinatonController.text.trim(),
+                        type: selectedTransportMode!,
+                        startdate: startDate,
+                        enddate: endDate!,
+                        passenger: _passengerController.text.trim(),
+                        time: DateTime.now(),
+                        category: selected == 0 ? 'Business' : 'Holiday',
+                        favourite: widget.triped.favourite,
+                      );
                       editTrips(data);
                       successMessage(
                           context: context,

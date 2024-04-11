@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:tripify/color_fonts/color.dart';
+import 'package:tripify/db_functioin/todo_db.dart';
 import 'package:tripify/models/home_model.dart';
-import 'package:tripify/models/memories_model.dart';
+import 'package:tripify/models/memory_model.dart';
+import 'package:tripify/models/todo_model.dart';
 import 'package:tripify/models/user_model.dart';
+import 'package:tripify/screens/login.dart';
 import 'package:tripify/screens/splash.dart';
 
 Future<void> main() async {
@@ -11,8 +14,10 @@ Future<void> main() async {
   if (!Hive.isAdapterRegistered(UserModelAdapter().typeId)) {
     Hive.registerAdapter(UserModelAdapter());
     Hive.registerAdapter(MemoryModelAdapter());
+    Hive.registerAdapter(TodoModelAdapter());
+    await TodoService().openBox();
   }
-    Hive.registerAdapter(HomeModelAdapter());
+  Hive.registerAdapter(HomeModelAdapter());
   runApp(const MyApp());
 }
 

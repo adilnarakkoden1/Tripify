@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:tripify/screens/bottombar.dart';
+import 'package:tripify/screens/login.dart';
 
 class Splash1 extends StatefulWidget {
   const Splash1({super.key});
@@ -15,9 +16,10 @@ class _Splash1State extends State<Splash1> {
   @override
   void initState() {
     super.initState();
+    //changeStatus();
     Timer(Duration(seconds: 4), () {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => Bottom()
+        MaterialPageRoute(builder: (context) => Login()
             //  Onboard()
             ),
       );

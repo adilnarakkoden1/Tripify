@@ -9,7 +9,13 @@ import 'package:tripify/models/home_model.dart';
 class ViewTrips extends StatelessWidget {
   HomeModel tripdetails;
   ViewTrips({super.key, required this.tripdetails});
-
+  List<String> path = [
+    'assets/images/dubai.jpg',
+    'assets/images/alapuza.jpg',
+    'assets/images/mysoor.webp',
+    'assets/images/rohtang.webp',
+    'assets/images/moonar.jpeg'
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,31 +37,16 @@ class ViewTrips extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(40.0)),
                     child: CarouselSlider(
-                        items: [
-                          ClipRRect(
+                        items: List.generate(
+                          path.length,
+                          (index) => ClipRRect(
                             borderRadius: BorderRadius.circular(20.0),
-                            child: Image.asset('assets/images/dubai.jpg'),
-                          ),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(20.0),
-                            child: Image.asset('assets/images/alapuza.jpg'),
-                          ),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(15.0),
                             child: Image.asset(
-                              'assets/images/mysoor.webp',
+                              path[index],
                               fit: BoxFit.fill,
                             ),
                           ),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(15.0),
-                            child: Image.asset('assets/images/rohtang.webp'),
-                          ),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(15.0),
-                            child: Image.asset('assets/images/moonar.jpeg'),
-                          ),
-                        ],
+                        ),
                         options: CarouselOptions(
                           height: 200,
                           autoPlay: true, // auto-play
@@ -138,13 +129,13 @@ class ViewTrips extends StatelessWidget {
                             backgroundColor: tripdetails.category == 'Business'
                                 ? Colors.orange
                                 : Colors.green,
-                            radius: 40,
+                            radius: 45,
                             child: Column(
                               children: [
                                 Text(
                                     DateFormat('dd')
                                         .format(tripdetails.startdate),
-                                    style: robotoM),
+                                    style: TextStyle(fontSize: 24)),
                                 Text(
                                     DateFormat('MMM')
                                         .format(tripdetails.startdate),

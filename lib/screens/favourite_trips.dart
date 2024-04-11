@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 import 'package:tripify/color_fonts/color.dart';
 import 'package:tripify/db_functioin/trips_db.dart';
 
-
 class Favourites extends StatelessWidget {
   const Favourites({super.key});
 
@@ -33,7 +32,7 @@ class Favourites extends StatelessWidget {
               itemCount: data.length,
               itemBuilder: (context, index) => Card(
                 margin: const EdgeInsets.all(12),
-                color:const  Color.fromARGB(255, 205, 162, 162),
+                color: const Color.fromARGB(255, 205, 162, 162),
                 child: ListTile(
                   title: Text(
                     data[index].source,

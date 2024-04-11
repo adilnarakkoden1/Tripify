@@ -4,7 +4,7 @@ part 'home_model.g.dart';
 @HiveType(typeId: 1)
 class HomeModel {
   @HiveField(0)
-   int ? id;
+  int? id;
   @HiveField(1)
   final String source;
   @HiveField(2)
@@ -23,6 +23,7 @@ class HomeModel {
   final String category;
   @HiveField(9)
   bool favourite;
+  
 
   HomeModel(
       {this.id,
@@ -34,5 +35,6 @@ class HomeModel {
       required this.passenger,
       required this.time,
       required this.category,
-      required this.favourite});
+      required this.favourite,
+      });
 }

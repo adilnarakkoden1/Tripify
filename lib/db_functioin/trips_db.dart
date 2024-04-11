@@ -30,7 +30,6 @@ Future<void> editTrips(HomeModel value) async {
   final userBox = await Hive.openBox<HomeModel>('tripsdb');
   await userBox.put(value.id, value);
   updateTrips();
-  
 }
 
 //-----------------------delete--------------------------------
@@ -41,3 +40,25 @@ Future<void> deleteTrips(int id) async {
   print(userBox.values.length);
   updateTrips();
 }
+
+// Future<void> changeStatus() async {
+//   final userBox = await Hive.openBox<HomeModel>('tripsdb');
+//   userBox.values.map((element) {
+//     if (element.startdate.day == DateTime.now().day &&
+//         element.startdate.month == DateTime.now().month &&
+//         element.startdate.year == DateTime.now().year) {
+//       element.status = 'Ongoing';
+//       editTrips(element);
+      
+//     } else if (element.startdate.day > DateTime.now().day &&
+//         element.startdate.month > DateTime.now().month &&
+//         element.startdate.year > DateTime.now().year) {
+//       element.status = 'Upcoming';
+//       editTrips(element);
+//     } else {
+//       element.status = 'Completed';
+//       editTrips(element);
+//     }
+//   });
+
+// }
