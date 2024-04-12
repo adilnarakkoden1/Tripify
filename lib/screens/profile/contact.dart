@@ -6,6 +6,11 @@ class Contactus extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          centerTitle: true,
+          title: Text(
+            'Contact Us',
+            style: TextStyle(color: Colors.white),
+          ),
           backgroundColor: pimaryBrown,
         ),
         body: Column(

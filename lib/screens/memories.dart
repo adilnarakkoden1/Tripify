@@ -37,62 +37,80 @@ class _MemoriesState extends State<Memories> {
         ),
       ),
       body: ValueListenableBuilder(
-        valueListenable: memorylist,
-        builder: (context, value, child) => GridView.builder(
-          itemCount: value.length,
-          physics: const RangeMaintainingScrollPhysics(
-              parent: BouncingScrollPhysics(
-                  decelerationRate: ScrollDecelerationRate.fast)),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2),
-          itemBuilder: (context, index) => Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Container(
-              padding: const EdgeInsets.all(8.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: const Color.fromARGB(255, 216, 213, 213),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) =>
-                              MemoryView(imagePath: value[index].imagePath),
-                        ));
-                      },
-                      icon: const Icon(
-                        Icons.folder,
-                        color: Colors.black,
-                        size: 80,
-                      )),
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: IconButton(
-                      onPressed: () => _showAlertDialog(value, index),
-                      icon: const Icon(
-                        Icons.delete,
-                        color: Colors.red,
-                      ),
+          valueListenable: memorylist,
+          builder: (context, value, child) {
+            if (value.isEmpty) {
+              return Center(
+                child: Container(
+                  padding: EdgeInsets.all(15),
+                  child: const Text(
+                    '!! Please create beautiful memories , let all your trips get stored!!',
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.italic,
                     ),
                   ),
-                  Text(
-                    value[index].details,
-                    overflow: TextOverflow.visible,
-                    style: const TextStyle(
-                        //backgroundColor: Color.fromARGB(255, 226, 111, 76),
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 4, 3, 2)),
+                ),
+              );
+            } else {
+              return GridView.builder(
+                itemCount: value.length,
+                physics: const RangeMaintainingScrollPhysics(
+                    parent: BouncingScrollPhysics(
+                        decelerationRate: ScrollDecelerationRate.fast)),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2),
+                itemBuilder: (context, index) => Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: Container(
+                    padding: const EdgeInsets.all(8.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: const Color.fromARGB(255, 216, 213, 213),
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => MemoryView(
+                                    imagePath: value[index].imagePath),
+                              ));
+                            },
+                            icon: const Icon(
+                              Icons.folder,
+                              color: Colors.black,
+                              size: 80,
+                            )),
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: IconButton(
+                            onPressed: () => _showAlertDialog(value, index),
+                            icon: const Icon(
+                              Icons.delete,
+                              color: Colors.red,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          value[index].details,
+                          overflow: TextOverflow.visible,
+                          style: const TextStyle(
+                              //backgroundColor: Color.fromARGB(255, 226, 111, 76),
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 4, 3, 2)),
+                        ),
+                      ],
+                    ),
                   ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
+                ),
+              );
+            }
+          }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showBottomSheet(
@@ -224,9 +242,8 @@ class _BOttomSheetScrollableState extends State<BOttomSheetScrollable> {
                     if (_isImageSelected &&
                         _detailsController.text.isNotEmpty) {
                       addMemory(MemoryModel(
-
                           imagePath: imagePath,
-                          
+
                           //FileImage(File(value[index])),
 
                           details: _detailsController.text.trim()));
@@ -254,35 +271,17 @@ class _BOttomSheetScrollableState extends State<BOttomSheetScrollable> {
 
   Future<void> _showImagePicker(BuildContext context) async {
     final picker = ImagePicker();
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
+    final pickedFileList = await picker.pickMultiImage();
+    if (pickedFileList != null) {
       setState(() {
-        _imageFile = File(pickedFile.path);
-        imagePath.add(_imageFile!.path);
-        _isImageSelected = true;
+        imagePath.clear(); // Clear previous selections
+        for (final pickedFile in pickedFileList) {
+          if (pickedFile != null) {
+            imagePath.add(File(pickedFile.path).path);
+          }
+        }
+        _isImageSelected = imagePath.isNotEmpty;
       });
     }
   }
 }
-
-
-
-
-
-//
-
-  // CircleAvatar(
-                      //   radius: 50,
-                      //   backgroundImage: _imageFile != null
-                      //       ? FileImage(File(imagePath[]))
-                      //       : const AssetImage('assets/images/memories.jpg')
-                      //           as ImageProvider,
-                      //   child: IconButton(
-                      //       onPressed: () {
-                      //         _showImagePicker(context);
-                      //       },
-                      //       icon: const Icon(
-                      //         Icons.camera,
-                      //         color: Colors.black,
-                      //       )),
-                      // ),

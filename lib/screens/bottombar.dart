@@ -6,6 +6,7 @@ import 'package:tripify/screens/memories.dart';
 import 'package:tripify/screens/profile/profile.dart';
 import 'package:tripify/screens/search_trips.dart';
 
+
 class Bottom extends StatefulWidget {
   const Bottom({super.key});
 

@@ -25,7 +25,7 @@ class _LoginState extends State<Login> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        backgroundColor: const Color(0xFFD9D9D9),
+        backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(30.0),
@@ -136,3 +136,4 @@ class _LoginState extends State<Login> {
     }
   }
 }
+

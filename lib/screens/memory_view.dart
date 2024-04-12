@@ -16,6 +16,11 @@ class _MemoryViewState extends State<MemoryView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          'Memory  View',
+          style: TextStyle(color: Colors.white),
+        ),
         backgroundColor: pimaryBrown,
       ),
       body: Container(

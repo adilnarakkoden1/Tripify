@@ -12,7 +12,11 @@ class _AboutViewState extends State<AboutView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('About Us'),
+        centerTitle: true,
+        title: Text(
+          'About Us',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

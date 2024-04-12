@@ -16,14 +16,15 @@ class _RegisterState extends State<Register> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        backgroundColor:const  Color(0xFFD9D9D9),
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(20.0),
@@ -47,7 +48,7 @@ class _RegisterState extends State<Register> {
                       controller: _usernameController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter your username';
+                          return 'Please enter username';
                         } else if (!RegExp(r'^[a-zA-Z0-9_]+$')
                             .hasMatch(value)) {
                           return 'Username can only contain Alphabets';
@@ -74,7 +75,7 @@ class _RegisterState extends State<Register> {
                     controller: _passwordController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your Password';
+                        return 'Please enter Password';
                       } else if (value.length < 5) {
                         return 'Password should contain atleast 5 digits';
                       }
@@ -114,24 +115,25 @@ class _RegisterState extends State<Register> {
                   ),
                   ElevatedButton(
                       onPressed: () {
-                        if(_formKey.currentState!.validate()){
-                        if (_usernameController.text.isNotEmpty ||
-                            _passwordController.text.isNotEmpty) {
-                          if (_passwordController.text.trim() !=
-                              _confirmPasswordController.text.trim()) {
+                        if (_formKey.currentState!.validate()) {
+                          if (_usernameController.text.isNotEmpty ||
+                              _passwordController.text.isNotEmpty) {
+                            if (_passwordController.text.trim() !=
+                                _confirmPasswordController.text.trim()) {
+                              message(
+                                  context: context,
+                                  message: 'Password does not Match!!');
+                            } else {
+                              inRegister(context);
+                              const sucMessage = 'Registered Successfully';
+                              successMessage(
+                                  context: context, successMessage: sucMessage);
+                            }
+                          } else {
                             message(
                                 context: context,
-                                message: 'Password does not Match!!');
-                          } else {
-                            inRegister(context);
-                            const sucMessage = 'Registered Successfully';
-                            successMessage(context: context, successMessage: sucMessage);
+                                message: 'Please provide your details!!');
                           }
-                        } else {
-                          message(
-                              context: context,
-                              message: 'Please provide your details!!');
-                        }
                         }
                       },
                       child: const Text('REGISTER')),
@@ -161,12 +163,13 @@ class _RegisterState extends State<Register> {
     );
   }
 
-  inRegister(BuildContext ctx)  {
+  inRegister(BuildContext ctx) {
     final userName = _usernameController.text.trim();
     final passWord = _passwordController.text.trim();
 
     final user = UserModel(username: userName, password: passWord);
     addUser(user);
-    Navigator.of(context).push( MaterialPageRoute(builder: (ctx) => const Login()));
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (ctx) => const Login()));
   }
 }
