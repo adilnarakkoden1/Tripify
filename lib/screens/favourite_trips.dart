@@ -30,7 +30,6 @@ class Favourites extends StatelessWidget {
                 .where((homemodel) => homemodel.favourite == true)
                 .toList();
             if (data.isEmpty) {
-              // Display a message when there are no favorites
               return Center(
                 child: Text(
                   'No favourites to show!!',

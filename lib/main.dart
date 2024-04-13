@@ -6,7 +6,6 @@ import 'package:tripify/models/home_model.dart';
 import 'package:tripify/models/memory_model.dart';
 import 'package:tripify/models/todo_model.dart';
 import 'package:tripify/models/user_model.dart';
-import 'package:tripify/screens/login.dart';
 import 'package:tripify/screens/splash.dart';
 
 Future<void> main() async {
