@@ -1,6 +1,8 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:lottie/lottie.dart';
 import 'package:tripify/db_functioin/user_model_db.dart';
 import 'package:tripify/global_functions.dart/scaffold_messenger.dart';
@@ -19,6 +21,8 @@ class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+//==============================================================================
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +58,7 @@ class _LoginState extends State<Login> {
                         return null;
                       },
                       decoration: const InputDecoration(
+                          prefixIcon: Icon(Icons.account_circle),
                           hintText: 'Username',
                           border: OutlineInputBorder(
                               borderRadius:
@@ -76,6 +81,7 @@ class _LoginState extends State<Login> {
                     },
                     obscureText: true,
                     decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.key),
                         hintText: 'Password',
                         border: OutlineInputBorder(
                             borderRadius:
@@ -136,4 +142,3 @@ class _LoginState extends State<Login> {
     }
   }
 }
-

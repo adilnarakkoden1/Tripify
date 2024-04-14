@@ -58,6 +58,7 @@ class _RegisterState extends State<Register> {
                         return null;
                       },
                       decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.account_circle),
                           border: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(30.0))),
@@ -82,6 +83,7 @@ class _RegisterState extends State<Register> {
                       return null;
                     },
                     decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.key),
                         border: OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(30.0))),
@@ -105,6 +107,7 @@ class _RegisterState extends State<Register> {
                       return null;
                     },
                     decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.key),
                         border: OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(30.0))),

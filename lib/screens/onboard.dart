@@ -8,7 +8,7 @@ class Onboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xFFD9D9D9),
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
         body: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -20,7 +20,7 @@ class Onboard extends StatelessWidget {
                 width: 220,
                 height: 80,
                 decoration: const BoxDecoration(
-                    color: Color.fromARGB(159, 175, 174, 174)),
+                    color: Color.fromARGB(255, 255, 255, 255)),
                 child: const Text(
                   'TRIPIFY',
                   style: TextStyle(fontSize: 48, fontWeight: FontWeight.w600),
