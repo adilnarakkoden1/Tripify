@@ -5,12 +5,16 @@ import 'package:tripify/models/home_model.dart';
 ValueNotifier<List<HomeModel>> tripslists = ValueNotifier([]);
 
 addTrip(HomeModel homeModel) async {
-  final userBox = await Hive.openBox<HomeModel>('tripsdb');
-  homeModel.id = await userBox.add(homeModel);
-  userBox.put(homeModel.id, homeModel);
-  tripslists.value.add(homeModel);
-  tripslists.notifyListeners();
-  print('added succesflly');
+  try {
+    final userBox = await Hive.openBox<HomeModel>('tripsdb');
+    homeModel.id = await userBox.add(homeModel);
+    userBox.put(homeModel.id, homeModel);
+    tripslists.value.add(homeModel);
+    tripslists.notifyListeners();
+    print('added succesflly');
+  } catch (e) {
+    print('error $e');
+  }
 }
 
 Future<void> updateTrips() async {

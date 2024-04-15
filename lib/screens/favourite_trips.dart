@@ -61,7 +61,7 @@ class Favourites extends StatelessWidget {
                       children: [
                         Text(DateFormat(' dd MMM yyy')
                             .format(value[index].startdate)),
-                        Text(DateFormat(' hh : m a').format(value[index].time)),
+                        Text(value[index].time.toString()),
                       ],
                     ),
                   ),

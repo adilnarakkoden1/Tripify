@@ -294,12 +294,3 @@ class _HomeHolidayState extends State<HomeHoliday> {
     }
   }
 }
-
-
-
-
-
-
-
-
-// _viewMode == 0 ? HomeHoliday() : HomeBusiness()),

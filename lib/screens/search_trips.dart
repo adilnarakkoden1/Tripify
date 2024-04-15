@@ -253,8 +253,7 @@ class _SearchTripsState extends State<SearchTrips> {
                                       Text(finduser[index].destination,
                                           style:
                                               TextStyle(color: Colors.black)),
-                                      Text(DateFormat(' hh:mm a')
-                                          .format(finduser[index].time)),
+                                      Text(finduser[index].time.toString()),
                                     ],
                                   ),
                                 ),
