@@ -22,7 +22,6 @@ int _currentIndex = 0;
 class _HomeState extends State<Home> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     updateTrips();
   }
@@ -106,7 +105,7 @@ class _HomeState extends State<Home> {
                   child: ValueListenableBuilder(
                 valueListenable: tripslists,
                 builder: (context, value, child) => value.isEmpty
-                    ? Center(
+                    ? const Center(
                         child: Text(
                           'Please plan your trips!!',
                           style: TextStyle(
@@ -126,7 +125,7 @@ class _HomeState extends State<Home> {
                               },
                               child: Slidable(
                                 startActionPane: ActionPane(
-                                    motion: ScrollMotion(),
+                                    motion: const ScrollMotion(),
                                     children: [
                                       SlidableAction(
                                         onPressed: (context) =>
@@ -194,7 +193,7 @@ class _HomeState extends State<Home> {
                                             ),
                                             radius: 50,
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 10,
                                           ),
                                           Expanded(
@@ -207,7 +206,7 @@ class _HomeState extends State<Home> {
                                                     color: Colors.black,
                                                     child: Text(value[index]
                                                         .destination)),
-                                                Text(DateFormat(' hh:mm a')
+                                                Text(DateFormat('hh:mm a')
                                                     .format(value[index].time)),
 
                                                 //=============== < dd MMM yyyy hh:mm a >==============

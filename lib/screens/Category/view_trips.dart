@@ -135,7 +135,7 @@ class ViewTrips extends StatelessWidget {
                                 Text(
                                     DateFormat('dd')
                                         .format(tripdetails.startdate),
-                                    style: TextStyle(fontSize: 24)),
+                                    style: const TextStyle(fontSize: 24)),
                                 Text(
                                     DateFormat('MMM')
                                         .format(tripdetails.startdate),

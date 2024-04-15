@@ -30,7 +30,7 @@ class Favourites extends StatelessWidget {
                 .where((homemodel) => homemodel.favourite == true)
                 .toList();
             if (data.isEmpty) {
-              return Center(
+              return const Center(
                 child: Text(
                   'No favourites to show!!',
                   style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
@@ -61,7 +61,7 @@ class Favourites extends StatelessWidget {
                       children: [
                         Text(DateFormat(' dd MMM yyy')
                             .format(value[index].startdate)),
-                        Text(value[index].time.toString()),
+                        Text(DateFormat('hh:mm a').format(value[index].time)),
                       ],
                     ),
                   ),
