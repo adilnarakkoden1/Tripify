@@ -50,7 +50,7 @@ class _HomeHolidayState extends State<EditHoliday> {
     _endDateController.text =
         DateFormat('dd MMM yyyy').format(widget.triped.enddate);
     _passengerController.text = widget.triped.passenger;
-    _timeController.text = DateFormat('hh : mm a').toString();
+    _timeController.text = DateFormat('hh : mm a').format(widget.triped.time);
     widget.triped.time.toString();
     selected = widget.triped.category == 'Business' ? 0 : 1;
     super.initState();
