@@ -22,10 +22,16 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
 android {
     namespace "com.example.tripify"
-    compileSdkVersion flutter.compileSdkVersion
-    ndkVersion flutter.ndkVersion
+    compileSdkVersion 34
+    ndkVersion "21.4.7075529"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -51,17 +57,25 @@ android {
         versionName flutterVersionName
     }
 
-    buildTypes {
+    signingConfigs {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']
         }
     }
+   buildTypes {
+      release {
+        signingConfig signingConfigs.release
+      }
+   }
 }
 
 flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    implementation 'com.google.android.material:material:1.10.0'
+}

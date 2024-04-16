@@ -16,6 +16,7 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         centerTitle: true,
         actions: [
           IconButton(
@@ -112,7 +113,7 @@ class _ProfileState extends State<Profile> {
             ElevatedButton(
               child: const Text('Yes'),
               onPressed: () {
-                Navigator.of(context).push(
+                Navigator.of(context).pushReplacement(
                     MaterialPageRoute(builder: (context) => const Login()));
               },
             ),
