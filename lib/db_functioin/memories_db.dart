@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:tripify/models/memory_model.dart';
 
-
 ValueNotifier<List<MemoryModel>> memorylist = ValueNotifier([]);
 
 addMemory(MemoryModel memoryModel) async {

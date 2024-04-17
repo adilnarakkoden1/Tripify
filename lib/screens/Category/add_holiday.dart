@@ -206,7 +206,7 @@ class _HomeHolidayState extends State<HomeHoliday> {
                     );
                   }).toList(),
                   decoration: const InputDecoration(
-                    labelText: 'Mode of transport',
+                    labelText: 'Mode of traassfdfnsport',
                     suffixIcon: Icon(Icons.commute),
                   ),
                   validator: (value) {
