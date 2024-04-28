@@ -30,7 +30,8 @@ class _AboutViewState extends State<AboutView> {
               ),
               SizedBox(height: 16),
               Text(
-                'Welcome to Tripify, your ultimate travel companion designed to simplify and enhance your travel planning experience. Our mission is to make travel planning more accessible, efficient, and enjoyable for everyone, whether you or an adventure.',
+                '''Welcome to Tripify, your ultimate travel companion designed to simplify and enhance 
+                your travel planning experience. Our mission is to make travel planning more accessible, efficient, and enjoyable for everyone, whether you or an adventure.''',
                 style: TextStyle(fontSize: 16),
               ),
               SizedBox(height: 16),
